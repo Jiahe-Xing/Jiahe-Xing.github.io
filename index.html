@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academic homepage of Jiahe Xing.">
+  <title>Jiahe Xing | Economics</title>
+  <style>
+    :root {
+      --text: #292929;
+      --muted: #646464;
+      --link: #1c5279;
+      --border: #dedede;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      font: 16px/1.75 Arial, Helvetica, sans-serif;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page {
+      width: min(900px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 54px 0 50px;
+    }
+    .site-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 25px;
+    }
+    .site-title {
+      font: normal 35px/1.15 Georgia, "Times New Roman", serif;
+      margin: 0 0 5px;
+      letter-spacing: -0.5px;
+    }
+    .site-subtitle { color: var(--muted); margin: 0; font-size: 14px; }
+    nav { display: flex; flex-wrap: wrap; gap: 21px; font-size: 14px; }
+    .intro {
+      display: grid;
+      grid-template-columns: 205px minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+      margin: 46px 0 58px;
+    }
+    .photo {
+      width: 205px;
+      height: 255px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f2f2f2;
+      border: 1px solid #e7e7e7;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+    .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .intro h2 { font: normal 24px/1.4 Georgia, "Times New Roman", serif; margin: -4px 0 13px; }
+    .intro p { margin: 0 0 15px; }
+    .contact { font-size: 14px; margin-top: 23px; }
+    section { margin-top: 39px; scroll-margin-top: 24px; }
+    .section-title {
+      font: normal 25px/1.35 Georgia, "Times New Roman", serif;
+      margin: 0 0 21px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 16px; font-weight: 600; margin: 23px 0 7px; }
+    .paper { margin: 0 0 20px; }
+    .paper-title { font-weight: 600; }
+    .note { color: var(--muted); font-size: 14px; }
+    .teaching-entry { margin-bottom: 13px; }
+    footer {
+      color: #888;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      margin-top: 65px;
+      padding-top: 18px;
+    }
+    @media (max-width: 640px) {
+      .page { width: min(100% - 36px, 900px); padding-top: 28px; }
+      .site-header { align-items: flex-start; flex-direction: column; gap: 13px; }
+      .site-title { font-size: 31px; }
+      nav { gap: 17px; }
+      .intro { grid-template-columns: 1fr; gap: 22px; margin: 32px 0 43px; }
+      .photo { width: 185px; height: 225px; }
+      .intro h2 { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div>
+        <h1 class="site-title">Jiahe Xing</h1>
+        <p class="site-subtitle">Ph.D. Candidate in Economics</p>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#cv">CV</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="intro" id="about">
+        <!-- To add a real photo later, replace the word "Photo" with:
+             <img src="photo.jpg" alt="Jiahe Xing"> -->
+        <div class="photo">Photo</div>
+        <div>
+          <h2>About Me</h2>
+          <p>I am a Ph.D. candidate in Economics at Syracuse University.</p>
+          <p>My research interests are in econometrics theory, with a focus on tail behaviors.</p>
+          <p class="contact">
+            <strong>Email:</strong> <a href="mailto:your.email@university.edu">your.email@university.edu</a>
+          </p>
+        </div>
+      </div>
+
+      <section id="research">
+        <h2 class="section-title">Research</h2>
+        <h3>Job Market Paper</h3>
+        <p class="paper">
+          <span class="paper-title">[Title of Your Job Market Paper]</span><br>
+          <span class="note">[Coauthors, if any]</span>
+        </p>
+        <h3>Working Papers</h3>
+        <p class="paper">
+          <span class="paper-title">[Title of Working Paper]</span><br>
+          <span class="note">[Coauthors, if any]</span>
+        </p>
+        <h3>Work in Progress</h3>
+        <p class="paper"><span class="paper-title">[Title of Research Project]</span></p>
+      </section>
+
+      <section id="teaching">
+        <h2 class="section-title">Teaching</h2>
+        <p class="teaching-entry">
+          <strong>[Course Name]</strong><br>
+          <span class="note">Teaching Assistant, [University], [Semester / Year]</span>
+        </p>
+      </section>
+
+      <section id="cv">
+        <h2 class="section-title">Curriculum Vitae</h2>
+        <p>CV available upon request.</p>
+        <!-- After uploading a file named cv.pdf, replace the line above with:
+             <p><a href="cv.pdf">Download CV (PDF)</a></p> -->
+      </section>
+    </main>
+
+    <footer>© 2026 Jiahe Xing</footer>
+  </div>
+</body>
+</html>
