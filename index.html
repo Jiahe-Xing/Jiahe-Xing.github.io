@@ -1,6 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <script>
+    (function () {
+      var measurementId = 'G-CJJPR2MNMV';
+      var consentKey = 'jiahe-analytics-consent';
+      var started = false;
+      function readChoice() {
+        try { return localStorage.getItem(consentKey); } catch (e) { return null; }
+      }
+      function startAnalytics() {
+        if (started) return;
+        started = true;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('consent', 'default', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+        window.gtag('set', 'allow_google_signals', false);
+        window.gtag('set', 'allow_ad_personalization_signals', false);
+        window.gtag('js', new Date());
+        var tag = document.createElement('script');
+        tag.async = true;
+        tag.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-MJSGP4R5';
+        document.head.appendChild(tag);
+      }
+      function clearAnalyticsCookies() {
+        document.cookie.split(';').forEach(function (cookie) {
+          var name = cookie.trim().split('=')[0];
+          if (name === '_ga' || name.indexOf('_ga_') === 0) {
+            document.cookie = name + '=; Max-Age=0; path=/';
+            document.cookie = name + '=; Max-Age=0; path=/; domain=' + location.hostname;
+          }
+        });
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+        var banner = document.getElementById('analytics-consent');
+        var choice = readChoice();
+        banner.hidden = choice === 'accepted' || choice === 'rejected';
+        if (choice === 'accepted') startAnalytics();
+        document.getElementById('analytics-settings').addEventListener('click', function () {
+          banner.hidden = false;
+          document.getElementById('analytics-accept').focus();
+        });
+        function choose(value) {
+          try { localStorage.setItem(consentKey, value); } catch (e) {}
+          banner.hidden = true;
+          if (value === 'accepted') {
+            window['ga-disable-' + measurementId] = false;
+            if (started && window.gtag) window.gtag('consent', 'update', { analytics_storage: 'granted' });
+            startAnalytics();
+          } else {
+            window['ga-disable-' + measurementId] = true;
+            if (started && window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' });
+            clearAnalyticsCookies();
+          }
+        }
+        document.getElementById('analytics-accept').addEventListener('click', function () { choose('accepted'); });
+        document.getElementById('analytics-reject').addEventListener('click', function () { choose('rejected'); });
+      });
+    }());
+  </script>
+
   <meta name="google-site-verification" content="fU-KkJlGa6VT_zz38jehPxjqNsuohV_bjTOQ73vwzDo" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -236,6 +301,14 @@
       }
       .profile-photo { grid-row: 1; width: 160px; height: 160px; }
     }
+
+    .analytics-settings { border: 0; padding: 5px; background: none; color: var(--muted); font: inherit; text-decoration: underline; cursor: pointer; }
+    .analytics-consent { position: fixed; z-index: 100; left: 16px; right: 16px; bottom: 16px; max-width: 650px; margin: auto; padding: 16px 18px; background: #fff; border: 1px solid var(--border); border-radius: 5px; box-shadow: 0 3px 18px #0002; font: 13px/1.5 "DM Sans", Arial, sans-serif; }
+    .analytics-consent p { margin: 0 0 10px; }
+    .analytics-consent button { margin-right: 8px; padding: 7px 14px; border: 1px solid var(--link); border-radius: 3px; background: #fff; color: var(--link); cursor: pointer; font: inherit; }
+    .analytics-consent button:focus-visible, .analytics-settings:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+    .analytics-consent details { margin-top: 10px; }
+
   </style>
 </head>
 
@@ -421,6 +494,7 @@
 
     <footer>
       <span>© 2026 Jiahe Xing</span>
+      <button id="analytics-settings" class="analytics-settings" type="button">Privacy / analytics</button>
       <a class="linkedin-link" href="https://www.linkedin.com/in/jiahe-xing-027608404/" target="_blank" rel="noopener noreferrer" aria-label="Jiahe Xing on LinkedIn" title="LinkedIn">
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <rect width="24" height="24" rx="2" fill="currentColor"/>
@@ -448,5 +522,17 @@
     window.addEventListener('hashchange', showPage);
     showPage();
   </script>
+
+  <aside id="analytics-consent" class="analytics-consent" aria-label="Website analytics preferences" hidden>
+    <p>This website uses Google Analytics to understand visits and traffic sources. Allow analytics cookies?</p>
+    <button id="analytics-accept" type="button">Accept</button>
+    <button id="analytics-reject" type="button">Reject</button>
+    <details>
+      <summary>Privacy information</summary>
+      <p>If you accept, Google Analytics processes page visits, interactions, device/browser information and approximate location. Analytics cookies distinguish visits. Google Analytics does not log or store IP addresses. Advertising features are disabled. Your choice is saved in this browser; you can withdraw it using “Privacy / analytics” in the footer.</p>
+      <p><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses this information</a>. Questions: <a href="mailto:jxing04@syr.edu">jxing04@syr.edu</a>.</p>
+    </details>
+  </aside>
+
 </body>
 </html>
