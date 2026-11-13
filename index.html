@@ -158,7 +158,13 @@
     .course { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 23px; }
     .course-name { font-weight: 600; }
     .course-term { color: var(--muted); font-size: 14px; }
-    nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 5px; }
+    nav a,
+    nav a:hover,
+    nav a[aria-current="page"],
+    a[href^="mailto:"],
+    a[href^="mailto:"]:hover {
+      text-decoration: none;
+    }
 
     .linkedin-link { display: inline-flex; align-items: center; padding: 5px; color: #0a66c2; }
     .linkedin-link:hover { color: #004182; }
