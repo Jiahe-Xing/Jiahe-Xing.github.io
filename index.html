@@ -76,7 +76,17 @@
 
     .intro {
       margin: 42px 0 48px;
-      max-width: 740px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .profile-photo {
+      display: block;
+      width: 190px;
+      height: 190px;
+      border-radius: 3px;
     }
 
     .intro p {
@@ -164,7 +174,10 @@
 
       .intro {
         margin: 32px 0 40px;
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
+      .profile-photo { grid-row: 1; width: 160px; height: 160px; }
     }
   </style>
 </head>
@@ -186,6 +199,7 @@
 
     <main>
       <div class="intro" id="about">
+        <div class="intro-text">
         <p>
           I am a Ph.D. candidate in Economics at Syracuse University.
         </p>
@@ -203,6 +217,8 @@
         <p>
           <a href="mailto:jxing04@syr.edu">jxing04@syr.edu</a>
         </p>
+        </div>
+        <img class="profile-photo" src="assets/jiahe-xing.jpg" alt="Jiahe Xing" width="325" height="325">
       </div>
 
       <section id="research">
