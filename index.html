@@ -124,6 +124,14 @@
       margin: 9px 0 22px;
     }
 
+    [hidden] { display: none !important; }
+    .teaching-role { margin: 0; font-weight: 600; }
+    .teaching-school { margin: 0 0 26px; color: var(--muted); }
+    .course { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 23px; }
+    .course-name { font-weight: 600; }
+    .course-term { color: var(--muted); font-size: 14px; }
+    nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 5px; }
+
     footer {
       color: #888;
       border-top: 1px solid var(--border);
@@ -170,6 +178,7 @@
       <nav aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#research">Research</a>
+        <a href="#teaching">Teaching</a>
       </nav>
     </header>
 
@@ -287,9 +296,52 @@
           </details>
         </article>
       </section>
+      <section id="teaching" hidden aria-labelledby="teaching-title">
+        <h2 class="section-title" id="teaching-title">Teaching</h2>
+        <p class="teaching-role">Teaching Assistant</p>
+        <p class="teaching-school">Syracuse University</p>
+        <div class="course">
+          <div><div class="course-name">ECN 621: Econometrics I</div><div class="note">Ph.D.</div></div>
+          <div class="course-term">Fall 2023–2026</div>
+        </div>
+        <div class="course">
+          <div><div class="course-name">ECN 622: Econometrics II</div><div class="note">Ph.D.</div></div>
+          <div class="course-term">Spring 2024–2026</div>
+        </div>
+        <div class="course">
+          <div><div class="course-name">ECN 623: Econometrics III</div><div class="note">Ph.D.</div></div>
+          <div class="course-term">Spring 2024–2026</div>
+        </div>
+        <div class="course">
+          <div><div class="course-name">ECN 441: Urban Economics</div><div class="note">Undergraduate</div></div>
+          <div class="course-term">Spring 2023</div>
+        </div>
+        <div class="course">
+          <div><div class="course-name">ECN 102: Introductory Macroeconomics</div><div class="note">Undergraduate</div></div>
+          <div class="course-term">Fall 2022</div>
+        </div>
+      </section>
     </main>
 
     <footer>© 2026 Jiahe Xing</footer>
   </div>
+  <script>
+    function showPage() {
+      const teaching = location.hash === '#teaching';
+      document.getElementById('about').hidden = teaching;
+      document.getElementById('research').hidden = teaching;
+      document.getElementById('teaching').hidden = !teaching;
+      document.querySelectorAll('nav a').forEach(function (link) {
+        if (link.getAttribute('href') === (location.hash || '#about')) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+      if (teaching) window.scrollTo(0, 0);
+    }
+    window.addEventListener('hashchange', showPage);
+    showPage();
+  </script>
 </body>
 </html>
