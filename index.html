@@ -235,12 +235,6 @@
         </p>
 
         <p>
-          My research interests are in econometrics, with a focus on
-          extreme value theory, machine learning, and specification
-          testing. My work also includes applications to health economics.
-        </p>
-
-        <p>
           <strong>I am on the 2026–2027 academic job market.</strong>
         </p>
 
@@ -251,7 +245,29 @@
         <img class="profile-photo" src="assets/jiahe-xing.jpg" alt="Jiahe Xing" width="325" height="325">
       </div>
 
-      <section id="research">
+      <section id="education" aria-labelledby="education-title">
+        <h2 class="section-title" id="education-title">Education</h2>
+        <div class="course">
+          <div><div class="course-name">Syracuse University</div><div>Ph.D. in Economics</div></div>
+          <div class="course-term">Expected May 2027</div>
+        </div>
+        <div class="course">
+          <div><div class="course-name">University of Wisconsin–Madison</div><div>M.S. in Economics and Econometrics</div></div>
+          <div class="course-term">2020–2022</div>
+        </div>
+        <div class="course">
+          <div><div class="course-name">University of Macau</div><div>B.Soc.Sc. in Sociology</div></div>
+          <div class="course-term">2016–2020</div>
+        </div>
+      </section>
+
+      <section id="research" hidden>
+        <p>
+          My research interests are in econometrics, with a focus on
+          extreme value theory, machine learning, and specification
+          testing. My work also includes applications to health economics.
+        </p>
+
         <h2 class="section-title">Job Market Paper</h2>
 
         <article class="paper">
@@ -386,18 +402,19 @@
   </div>
   <script>
     function showPage() {
-      const teaching = location.hash === '#teaching';
-      document.getElementById('about').hidden = teaching;
-      document.getElementById('research').hidden = teaching;
-      document.getElementById('teaching').hidden = !teaching;
+      const page = ['#research', '#teaching'].includes(location.hash) ? location.hash : '#about';
+      document.getElementById('about').hidden = page !== '#about';
+      document.getElementById('education').hidden = page !== '#about';
+      document.getElementById('research').hidden = page !== '#research';
+      document.getElementById('teaching').hidden = page !== '#teaching';
       document.querySelectorAll('nav a').forEach(function (link) {
-        if (link.getAttribute('href') === (location.hash || '#about')) {
+        if (link.getAttribute('href') === page) {
           link.setAttribute('aria-current', 'page');
         } else {
           link.removeAttribute('aria-current');
         }
       });
-      if (teaching) window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
     window.addEventListener('hashchange', showPage);
     showPage();
